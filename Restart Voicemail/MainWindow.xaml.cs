@@ -36,6 +36,9 @@ namespace Restart_Voicemail
             info.WindowStyle = ProcessWindowStyle.Hidden;
             info.CreateNoWindow = true;
             info.UseShellExecute = false;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.RedirectStandardInput = true;
             using (Process shutdownProcess = Process.Start(info))
             {
                 while (!shutdownProcess.WaitForExit(100))
@@ -79,6 +82,9 @@ namespace Restart_Voicemail
             info.WindowStyle = ProcessWindowStyle.Hidden;
             info.CreateNoWindow = true;
             info.UseShellExecute = false;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.RedirectStandardInput = true;
             using (Process resetProcess = Process.Start(info))
             {
                 while (!resetProcess.WaitForExit(100))
