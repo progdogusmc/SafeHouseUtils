@@ -54,6 +54,40 @@ namespace Reboot
             }
 
             info = new ProcessStartInfo();
+            info.Arguments = @"/im admin.exe /f";
+            info.FileName = @"c:\windows\system32\taskkill.exe";
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            using (Process adminKillProcess = Process.Start(info))
+            {
+                while (!adminKillProcess.WaitForExit(100))
+                {
+                    if (!adminKillProcess.Responding)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            info = new ProcessStartInfo();
+            info.Arguments = @"/im entry.exe /f";
+            info.FileName = @"c:\windows\system32\taskkill.exe";
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            using (Process entryKillProcess = Process.Start(info))
+            {
+                while (!entryKillProcess.WaitForExit(100))
+                {
+                    if (!entryKillProcess.Responding)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            info = new ProcessStartInfo();
             info.Arguments = @"/r /t 00";
             info.FileName = @"c:\windows\system32\shutdown.exe";
             info.WindowStyle = ProcessWindowStyle.Hidden;
