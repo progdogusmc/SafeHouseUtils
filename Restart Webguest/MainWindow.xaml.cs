@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,12 @@ namespace Restart_Webguest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Thread restartThread = new Thread(restartIis);
+            restartThread.Start();
+        }
+
+        private void restartIis()
+        {
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = @"c:\windows\system32\iisreset.exe";
             info.WindowStyle = ProcessWindowStyle.Hidden;
@@ -44,6 +51,8 @@ namespace Restart_Webguest
                     }
                 }
             }
+
+            Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
         }
     }
 }
