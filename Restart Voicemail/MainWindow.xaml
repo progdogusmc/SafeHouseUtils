@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Restarting Voicemail..." Height="150" Width="500" Icon="restart_voicemail.ico" Loaded="Window_Loaded"> 
     <Grid>
-        <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Restarting voicemail...</TextBlock>
+        <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Voicemail restarting...</TextBlock>
     </Grid>
 </Window>

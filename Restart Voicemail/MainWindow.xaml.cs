@@ -72,7 +72,7 @@ namespace Restart_Voicemail
             while ((elapsedTime - startTime).TotalSeconds < 90)
             {
                 elapsedTime = DateTime.Now;
-                setStatusText(string.Format("Voicemail shutting down: {0} seconds left", (90 - (int)(elapsedTime - startTime).TotalSeconds)));
+                setStatusText(string.Format("Voicemail restarting: {0} seconds left", (165 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
             
