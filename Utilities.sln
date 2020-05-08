@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restart Voicemail", "Restar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restart Webguest", "Restart Webguest\Restart Webguest.csproj", "{4C368D65-D435-416A-9DCC-5F4B2D2BFDB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remote Entry", "Remote Entry\Remote Entry.csproj", "{B989B3BB-7738-411C-95E5-D4D6CF45C343}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4C368D65-D435-416A-9DCC-5F4B2D2BFDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C368D65-D435-416A-9DCC-5F4B2D2BFDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C368D65-D435-416A-9DCC-5F4B2D2BFDB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B989B3BB-7738-411C-95E5-D4D6CF45C343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B989B3BB-7738-411C-95E5-D4D6CF45C343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B989B3BB-7738-411C-95E5-D4D6CF45C343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B989B3BB-7738-411C-95E5-D4D6CF45C343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
