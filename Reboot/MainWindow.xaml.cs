@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,12 @@ namespace Reboot
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Thread rebootThread = new Thread(reboot);
+            rebootThread.Start();
+        }
+
+        private void reboot()
         {
             ProcessStartInfo info = new ProcessStartInfo();
             info.Arguments = @"/im mstsc.exe /f";

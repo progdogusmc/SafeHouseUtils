@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,12 @@ namespace Logoff
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Thread logoutThread = new Thread(logout);
+            logoutThread.Start();
+        }
+
+        private void logout()
         {
             ProcessStartInfo info = new ProcessStartInfo();
             info.Arguments = @"/im admin.exe /f";
