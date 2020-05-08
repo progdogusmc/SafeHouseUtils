@@ -69,10 +69,10 @@ namespace Restart_Voicemail
         {
             DateTime startTime = DateTime.Now;
             DateTime elapsedTime = DateTime.Now;
-            while ((elapsedTime - startTime).TotalSeconds < 90)
+            while ((elapsedTime - startTime).TotalSeconds < 60)
             {
                 elapsedTime = DateTime.Now;
-                setStatusText(string.Format("Voicemail restarting: {0} seconds left", (165 - (int)(elapsedTime - startTime).TotalSeconds)));
+                setStatusText(string.Format("Voicemail restarting: {0} seconds left", (120 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
             
@@ -104,10 +104,10 @@ namespace Restart_Voicemail
         {
             DateTime startTime = DateTime.Now;
             DateTime elapsedTime = DateTime.Now;
-            while ((elapsedTime - startTime).TotalSeconds < 120)
+            while ((elapsedTime - startTime).TotalSeconds < 60)
             {
                 elapsedTime = DateTime.Now;
-                setStatusText(string.Format("Voicemail restarting: {0} seconds left", (120 - (int)(elapsedTime - startTime).TotalSeconds)));
+                setStatusText(string.Format("Voicemail restarting: {0} seconds left", (60 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
 
