@@ -78,10 +78,10 @@ namespace Remote_Entry
 
             DateTime startTime = DateTime.Now;
             DateTime elapsedTime = DateTime.Now;
-            while ((elapsedTime - startTime).TotalSeconds < 45)
+            while ((elapsedTime - startTime).TotalSeconds < 15)
             {
                 elapsedTime = DateTime.Now;
-                setStatusText(string.Format("Entry restarting: {0} seconds left", (90 - (int)(elapsedTime - startTime).TotalSeconds)));
+                setStatusText(string.Format("Entry restarting: {0} seconds left", (30 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
 
@@ -109,10 +109,10 @@ namespace Remote_Entry
 
             startTime = DateTime.Now;
             elapsedTime = DateTime.Now;
-            while ((elapsedTime - startTime).TotalSeconds < 45)
+            while ((elapsedTime - startTime).TotalSeconds < 15)
             {
                 elapsedTime = DateTime.Now;
-                setStatusText(string.Format("Entry restarting: {0} seconds left", (45 - (int)(elapsedTime - startTime).TotalSeconds)));
+                setStatusText(string.Format("Entry restarting: {0} seconds left", (15 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
 
