@@ -75,7 +75,35 @@ namespace Restart_Voicemail
                 setStatusText(string.Format("Voicemail restarting: {0} seconds left", (120 - (int)(elapsedTime - startTime).TotalSeconds)));
                 Thread.Sleep(500);
             }
-            
+
+            try
+            {
+                var killInfo = new ProcessStartInfo();
+                killInfo.Arguments = @"/F /IM voicemail.exe";
+                killInfo.FileName = @"c:\windows\system32\taskkill.exe";
+                killInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                killInfo.CreateNoWindow = true;
+                killInfo.UseShellExecute = false;
+                killInfo.RedirectStandardError = true;
+                killInfo.RedirectStandardOutput = true;
+                killInfo.RedirectStandardInput = true;
+                using (Process mstscKillProcess = Process.Start(killInfo))
+                {
+                    while (!mstscKillProcess.WaitForExit(100))
+                    {
+                        if (!mstscKillProcess.Responding)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+            } catch (Exception ex)
+            {
+
+            }
+
+
             ProcessStartInfo info = new ProcessStartInfo();
             info.Arguments = @"start SafeHouseVoiceMail_svc";
             info.FileName = @"c:\windows\system32\net.exe";

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -74,6 +75,21 @@ namespace Remote_Entry
                         break;
                     }
                 }
+            }
+
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (client.OpenRead("https://www.google.com/generate_204"))
+                    {
+                        setStatusText("Internet Connection Okay!");
+                    }
+                }
+            } catch (Exception ex)
+            {
+                setStatusText("Internet Connection Offline!");
+                return;
             }
 
             DateTime startTime = DateTime.Now;

@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Restarting Remote Entry..." Height="150" Width="400" Loaded="Window_Loaded" Icon="Safehaus.ico">
     <Grid>
-            <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Connecting to Cloud Server...</TextBlock>
+            <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Checking For Internet...</TextBlock>
         </Grid>
 </Window>
