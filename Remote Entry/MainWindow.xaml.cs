@@ -24,6 +24,8 @@ namespace Remote_Entry
     /// </summary>
     public partial class MainWindow : Window
     {
+        Thread RestartThread { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +33,8 @@ namespace Remote_Entry
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread restartThread = new Thread(restartEntry);
-            restartThread.Start();
+            RestartThread = new Thread(restartEntry);
+            RestartThread.Start();
         }
 
         private void restartEntry()
@@ -77,19 +79,35 @@ namespace Remote_Entry
                 }
             }
 
-            try
+
+            bool? internetOkay = false;
+            bool firstLoop = true;
+            while (internetOkay == false)
             {
-                using (var client = new WebClient())
+                try
                 {
-                    using (client.OpenRead("https://www.google.com/generate_204"))
+                    using (var client = new WebClient())
                     {
-                        setStatusText("Internet Connection Okay!");
+                        using (client.OpenRead("https://www.google.com/generate_204"))
+                        {
+                            if (internetOkay == false && !firstLoop)
+                            {
+                                setStatusText("Internet Connection Restored!");
+                                Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Collapsed; });
+                                Thread.Sleep(1000);
+                            }
+                            internetOkay = true;
+                        }
                     }
                 }
-            } catch (Exception ex)
-            {
-                setStatusText("Internet Connection Offline!");
-                return;
+                catch (Exception ex)
+                {
+                    setStatusText("Internet Connection Offline!");
+                    internetOkay = false;
+                    Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Visible; });
+                    Thread.Sleep(1000);
+                }
+                firstLoop = false;
             }
 
             DateTime startTime = DateTime.Now;
@@ -159,18 +177,38 @@ namespace Remote_Entry
                 }
             }
 
-            Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
+            try
+            {
+                Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
+            } catch (Exception ex)
+            {
+
+            }
         }
 
         private void setStatusText(string text)
         {
-            if (!Dispatcher.CheckAccess())
+            try
             {
-                Dispatcher.Invoke(() => { setStatusText(text); });
-                return;
-            }
+                if (!Dispatcher.CheckAccess())
+                {
+                    Dispatcher.Invoke(() => { setStatusText(text); });
+                    return;
+                }
 
-            StatusTextBlock.Text = text;
+                StatusTextBlock.Text = text;
+            } catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (RestartThread != null && RestartThread.IsAlive)
+            {
+                RestartThread.Abort();
+            }
         }
     }
 }

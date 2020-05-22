@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Logoff"
         mc:Ignorable="d"
-        Title="Logging off" Height="150" Width="400" Icon="logoff.ico" Loaded="Window_Loaded">
+        Title="Logging off" Height="150" Width="400" Icon="logoff.ico" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <TextBlock Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="32" FontWeight="DemiBold">Logging off...</TextBlock>
     </Grid>

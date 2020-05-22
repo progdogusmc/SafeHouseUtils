@@ -22,6 +22,8 @@ namespace Reboot
     /// </summary>
     public partial class MainWindow : Window
     {
+        Thread RebootThread { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +32,8 @@ namespace Reboot
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread rebootThread = new Thread(reboot);
-            rebootThread.Start();
+            RebootThread = new Thread(reboot);
+            RebootThread.Start();
         }
 
         private void reboot()
@@ -94,6 +96,14 @@ namespace Reboot
             info.CreateNoWindow = true;
             info.UseShellExecute = false;
             Process.Start(info);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (RebootThread != null && RebootThread.IsAlive)
+            {
+                RebootThread.Abort();
+            }
         }
     }
 }

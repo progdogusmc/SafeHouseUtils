@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restart_Voicemail"
         mc:Ignorable="d"
-        Title="Restarting Voicemail..." Height="150" Width="500" Icon="restart_voicemail.ico" Loaded="Window_Loaded"> 
+        Title="Restarting Voicemail..." Height="150" Width="500" Icon="restart_voicemail.ico" Loaded="Window_Loaded" Closed="Window_Closed"> 
     <Grid>
         <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Voicemail restarting...</TextBlock>
     </Grid>

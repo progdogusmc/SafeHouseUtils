@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Remote_Entry"
         mc:Ignorable="d"
-        Title="Restarting Remote Entry..." Height="150" Width="400" Loaded="Window_Loaded" Icon="Safehaus.ico">
+        Title="Restarting Remote Entry..." Height="150" Width="400" Loaded="Window_Loaded" Icon="Safehaus.ico" Closed="Window_Closed">
     <Grid>
-            <TextBlock Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Checking For Internet...</TextBlock>
-        </Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock x:Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Connecting To SafeHouse...</TextBlock>
+            <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="16,16,16,0" Visibility="Collapsed">Please try restarting your router, reboot your computer, and then call your internet provider if the issue has not been resolved...</TextBlock>
+        </StackPanel>
+    </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restart_Webguest"
         mc:Ignorable="d"
-        Title="Restarting Webguest..." Height="150" Width="400" Icon="restart_webguest.ico" Loaded="Window_Loaded">
+        Title="Restarting Webguest..." Height="150" Width="400" Icon="restart_webguest.ico" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <TextBlock Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="32" FontWeight="DemiBold">Restarting Webguest...</TextBlock>
     </Grid>

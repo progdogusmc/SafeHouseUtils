@@ -22,6 +22,8 @@ namespace Restart_Webguest
     /// </summary>
     public partial class MainWindow : Window
     {
+        Thread RestartThread { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,29 +32,43 @@ namespace Restart_Webguest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread restartThread = new Thread(restartIis);
-            restartThread.Start();
+            RestartThread = new Thread(restartIis);
+            RestartThread.Start();
         }
 
         private void restartIis()
         {
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = @"c:\windows\system32\iisreset.exe";
-            info.WindowStyle = ProcessWindowStyle.Hidden;
-            info.CreateNoWindow = true;
-            info.UseShellExecute = false;
-            using (Process iisresetProcess = Process.Start(info))
+            try
             {
-                while (!iisresetProcess.WaitForExit(100))
+                ProcessStartInfo info = new ProcessStartInfo();
+                info.FileName = @"c:\windows\system32\iisreset.exe";
+                info.WindowStyle = ProcessWindowStyle.Hidden;
+                info.CreateNoWindow = true;
+                info.UseShellExecute = false;
+                using (Process iisresetProcess = Process.Start(info))
                 {
-                    if (!iisresetProcess.Responding)
+                    while (!iisresetProcess.WaitForExit(100))
                     {
-                        break;
+                        if (!iisresetProcess.Responding)
+                        {
+                            break;
+                        }
                     }
                 }
-            }
 
-            Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
+                Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
+            } catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (RestartThread != null && RestartThread.IsAlive)
+            {
+                RestartThread.Abort();
+            }
         }
     }
 }

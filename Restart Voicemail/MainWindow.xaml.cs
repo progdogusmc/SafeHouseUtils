@@ -22,6 +22,8 @@ namespace Restart_Voicemail
     /// </summary>
     public partial class MainWindow : Window
     {
+        Thread WorkerThread { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -50,8 +52,8 @@ namespace Restart_Voicemail
                 }
             }
 
-            Thread waitForShutdownThread = new Thread(waitForShutdown);
-            waitForShutdownThread.Start();
+            WorkerThread = new Thread(waitForShutdown);
+            WorkerThread.Start();
         }
 
         private void setStatusText(string text)
@@ -124,8 +126,8 @@ namespace Restart_Voicemail
                 }
             }
 
-            Thread waitForStartupThread = new Thread(waitForStartup);
-            waitForStartupThread.Start();
+            WorkerThread = new Thread(waitForStartup);
+            WorkerThread.Start();
         }
 
         private void waitForStartup()
@@ -140,6 +142,14 @@ namespace Restart_Voicemail
             }
 
             Dispatcher.Invoke(() => { Application.Current.Shutdown(); });
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (WorkerThread != null && WorkerThread.IsAlive)
+            {
+                WorkerThread.Abort();
+            }
         }
     }
 }

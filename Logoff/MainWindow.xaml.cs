@@ -22,6 +22,8 @@ namespace Logoff
     /// </summary>
     public partial class MainWindow : Window
     {
+        Thread LogoutThread { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +32,8 @@ namespace Logoff
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread logoutThread = new Thread(logout);
-            logoutThread.Start();
+            LogoutThread = new Thread(logout);
+            LogoutThread.Start();
         }
 
         private void logout()
@@ -77,6 +79,14 @@ namespace Logoff
             info.CreateNoWindow = true;
             info.UseShellExecute = false;
             Process.Start(info);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (LogoutThread != null && LogoutThread.IsAlive)
+            {
+                LogoutThread.Abort();
+            }
         }
     }
 }
