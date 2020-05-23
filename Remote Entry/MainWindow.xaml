@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock x:Name="StatusTextBlock" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="24" FontWeight="DemiBold">Connecting To SafeHouse...</TextBlock>
-            <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="16,16,16,0" Visibility="Collapsed">Please try restarting your router, reboot your computer, and then call your internet provider if the issue has not been resolved...</TextBlock>
+            <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Left" Margin="16,16,16,0" Visibility="Collapsed" xml:space="preserve">Try:<LineBreak/><LineBreak/><Bold>·</Bold>    Restarting your router<LineBreak/><LineBreak/><Bold>·</Bold>    Reboot your computer<LineBreak/><LineBreak/><Bold>·</Bold>    Call your internet provider</TextBlock>
         </StackPanel>
     </Grid>
 </Window>

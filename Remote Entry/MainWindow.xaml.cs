@@ -93,7 +93,7 @@ namespace Remote_Entry
                             if (internetOkay == false && !firstLoop)
                             {
                                 setStatusText("Internet Connection Restored!");
-                                Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Collapsed; });
+                                Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Collapsed; Height = 150; });
                                 Thread.Sleep(1000);
                             }
                             internetOkay = true;
@@ -104,7 +104,7 @@ namespace Remote_Entry
                 {
                     setStatusText("Internet Connection Offline!");
                     internetOkay = false;
-                    Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Visible; });
+                    Dispatcher.Invoke(() => { ErrorTextBlock.Visibility = Visibility.Visible; Height = 250; });
                     Thread.Sleep(1000);
                 }
                 firstLoop = false;
